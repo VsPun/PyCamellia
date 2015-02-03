@@ -4,6 +4,7 @@
 %}
 
 %include "std_string.i"
+%include "std_vector.i"
 
 %nodefaultctor LinearTerm;  // Disable the default constructor for class LinearTerm                                                                                                  
 
