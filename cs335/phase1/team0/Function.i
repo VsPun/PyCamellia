@@ -4,6 +4,7 @@
 %}
 
 %include "std_string.i"
+%include "std_vector.i"
 
 %nodefaultctor Function;  // Disable the default constructor for class Function
 
