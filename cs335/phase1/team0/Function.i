@@ -5,6 +5,7 @@
 
 %include "std_string.i"
 %include "std_vector.i"
+%include "Mesh.i"
 
 %nodefaultctor Function;  // Disable the default constructor for class Function
 
@@ -34,7 +35,7 @@ public:
   static FunctionPtr xn(int n=1); // NOTE: important to have "FunctionPtr" here exactly as below; "Teuchos::RCP<Function>", though equivalent in C++, is not equivalent for SWIG
   static FunctionPtr yn(int n=1);
   
-  static FunctionPtr composedFunction( FunctionPtr f, FunctionPtr arg g);
+  static FunctionPtr composedFunction(FunctionPtr f, FunctionPtr g);
   static FunctionPtr constant(double value);
   static FunctionPtr vectorize(FunctionPtr f1, FunctionPtr f2);
   static FunctionPtr normal();
