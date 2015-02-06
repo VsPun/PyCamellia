@@ -26,6 +26,6 @@ _%.so : %_wrap.o
 
 % : _%.so ;
 
-all : Var VarFactory Function LinearTerm IP BF SpatialFilter BC RHS PoissonFormulation Mesh MeshFactory Solution HDF5Exporter
+all : Var VarFactory Function LinearTerm IP BF SpatialFilter BC RHS PoissonFormulation Mesh MeshFactory Solution HDF5Exporter StokesVGPFormulation
 
 .PRECIOUS : _%.so
