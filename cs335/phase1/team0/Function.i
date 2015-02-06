@@ -11,7 +11,7 @@
 
 class Function {
 public:
-  virtual string displayString();
+  std::string displayString();
   double evaluate(double x);
   double evaluate(double x, double y);
   double evaluate(double x, double y, double z);
