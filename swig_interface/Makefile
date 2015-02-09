@@ -1,12 +1,11 @@
 CAMELLIA_INCLUDE=/source/ubuntu/csci335/include/Camellia
 CAMELLIA_LIB_DIR=/source/ubuntu/csci335/lib
-CPP=/source/ubuntu/csci335/local/openmpi-1.8.4/bin/mpic++
+CPP=g++
 PYTHON_INCLUDE=/usr/include/python2.7
-HDF5_INCLUDE=/source/ubuntu/csci335/local/hdf5/include
-OPEN_MPI_INCLUDE=/source/ubuntu/csci335/local/openmpi-1.8.4/include
+HDF5_INCLUDE=/source/ubuntu/csci335/local/hdf5-serial/include
 
-Trilinos_INCLUDE_DIRS=/source/ubuntu/csci335/local/trilinos/mpi-release-shared/include
-Trilinos_LIBRARY_DIRS=/source/ubuntu/csci335/local/trilinos/mpi-release-shared/lib
+Trilinos_INCLUDE_DIRS=/source/ubuntu/csci335/local/trilinos/serial-release-shared/include
+Trilinos_LIBRARY_DIRS=/source/ubuntu/csci335/local/trilinos/serial-release-shared/lib
 
 Trilinos_LIBRARIES=pytrilinos;locathyra;locaepetra;localapack;loca;noxepetra;noxlapack;nox;intrepid;stratimikos;stratimikosbelos;stratimikosaztecoo;stratimikosamesos;stratimikosml;stratimikosifpack;anasazitpetra;ModeLaplace;anasaziepetra;anasazi;belostpetra;belosepetra;belos;ml;komplex;ifpack;pamgen_extras;pamgen;amesos;galeri-xpetra;galeri;aztecoo;dpliris;isorropia;thyraepetraext;thyraepetra;thyracore;thyraepetraext;thyraepetra;thyracore;xpetra-sup;xpetra-ext;xpetra;epetraext;tpetraext;tpetrainout;tpetra;triutils;shards;zoltan;epetra;sacado;kokkoslinalg;kokkosnodeapi;kokkos;kokkoslinalg;kokkosnodeapi;kokkos;rtop;tpi;teuchosremainder;teuchosnumerics;teuchoscomm;teuchosparameterlist;teuchoscore;teuchosremainder;teuchosnumerics;teuchoscomm;teuchosparameterlist;teuchoscore
 Trilinos_LIBRARIES_LINK_LINE=-lpytrilinos -llocathyra -llocaepetra -llocalapack -lloca -lnoxepetra -lnoxlapack -lnox -lintrepid -lstratimikos -lstratimikosbelos -lstratimikosaztecoo -lstratimikosamesos -lstratimikosml -lstratimikosifpack -lanasazitpetra -lModeLaplace -lanasaziepetra -lanasazi -lbelostpetra -lbelosepetra -lbelos -lml -lkomplex -lifpack -lpamgen_extras -lpamgen -lamesos -lgaleri-xpetra -lgaleri -laztecoo -ldpliris -lisorropia -lthyraepetraext -lthyraepetra -lthyracore -lthyraepetraext -lthyraepetra -lthyracore -lxpetra-sup -lxpetra-ext -lxpetra -lepetraext -ltpetraext -ltpetrainout -ltpetra -ltriutils -lshards -lzoltan -lepetra -lsacado -lkokkoslinalg -lkokkosnodeapi -lkokkos -lkokkoslinalg -lkokkosnodeapi -lkokkos -lrtop -ltpi -lteuchosremainder -lteuchosnumerics -lteuchoscomm -lteuchosparameterlist -lteuchoscore -lteuchosremainder -lteuchosnumerics -lteuchoscomm -lteuchosparameterlist -lteuchoscore
