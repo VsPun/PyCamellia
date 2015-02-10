@@ -1,0 +1,8 @@
+This is a file to help you install pyton on your computer. 
+If you are not aware, pyton is the more 'thug' version of python (not installed by default on lab computers). 
+Pyton is dependent on python being installed though.
+
+
+(1) Open .bashrc in in your home directory
+(2) paste below #User specific aliases and fucntions:
+	pyton() { echo -e "\nYo, welcome to pyton, thug, you keep playin, \n\n"; python $@; }
