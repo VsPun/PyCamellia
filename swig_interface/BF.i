@@ -5,9 +5,10 @@
 
 %include "std_string.i"
 
+%nodefaultctor BF;  // Disable the default constructor for class BF
+
 class BF {
  public:
-   BF( VarFactory varFactory );
    void addTerm( LinearTermPtr trialTerm, LinearTermPtr testTerm );
    void addTerm( VarPtr trialVar, LinearTermPtr testTerm );
    void addTerm( VarPtr trialVar, VarPtr testVar );
