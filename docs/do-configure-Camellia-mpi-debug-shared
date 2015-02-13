@@ -1,0 +1,19 @@
+cmake \
+  -DTRILINOS_PATH:FILEPATH="/Users/nroberts/lib/trilinos/mpi-debug-shared" \
+  -DCAMELLIA_SOURCE_DIR:FILEPATH="/Users/nroberts/Camellia/src" \
+  -DADDITIONAL_LIBRARY_DIRS:FILEPATH="/System/Library/Frameworks/Python.framework/Versions/Current/lib" \
+  -DADDITIONAL_LIBRARIES="python2.7" \
+  -DCMAKE_BUILD_TYPE="DEBUG" \
+  -DZLIB_LIB="/usr/lib/libz.dylib" \
+  -DMUMPS_DIR="/Users/nroberts/lib/mumps-4.10.0" \
+  -DMPI_DIR="$HOME/lib/openmpi-1.8.3" \
+  -DMPI_INCLUDE="/Users/nroberts/lib/openmpi-1.8.3/include" \
+  -DMPI_LINK_CC="-L/Users/nroberts/lib/openmpi-1.8.3/lib -lmpi -lm" \
+  -DMPI_LINK_FORTRAN="-Wl,-commons,use_dylibs -I/Users/nroberts/lib/openmpi-1.8.3/lib -L/Users/nroberts/lib/openmpi-1.8.3/lib -lmpi_mpifh -lmpi -lm -lmpi_cxx" \
+  -DSCALAPACK_LIB="/Users/nroberts/lib/libscalapack.a" \
+  -DBUILD_TRUMAN_DRIVERS:BOOL=OFF \
+  -DBUILD_CONFUSION_JESSE_DRIVERS:BOOL=OFF \
+  -DBUILD_INCOMPRESSIBLENS_DRIVERS:BOOL=OFF \
+  -Wno-dev \
+  ../..
+
