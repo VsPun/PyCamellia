@@ -1,0 +1,12 @@
+To build PyCamellia, there are three steps:
+1. Build Trilinos with shared libraries (and, ideally, PyTrilinos support, though this is probably not actually required).
+2. Build Camellia, linking against that Trilinos build.
+3. Build PyCamellia.
+
+Steps 1 and 2 are beyond the scope of this document, but you can find a sample do-configure script for Trilinos, as well as one for Camellia, enclosed with PyCamellia.
+
+As of this writing, though Trilinos has a make install option Camellia does not, so you'll likely want to move the built library and copy the header files to some convenient location before proceeding to Step 3.
+
+Once Steps 1 and 2 are accomplished, building PyCamellia requires editing the Makefile in PyCamellia/swig_interface.  Change each of the paths listed to match your installation.  Once that's accomplished, simply run make from within the swig_interface directory.
+
+You'll want to add the swig_interface directory to your PYTHONPATH, so that Python will know where to look for the Python modules.
