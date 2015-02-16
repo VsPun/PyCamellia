@@ -6,7 +6,13 @@
 %include "std_string.i"
 %include "std_vector.i"
 
+namespace std {
+  %template(DoubleVector) vector<double>;
+}
+
 %nodefaultctor SpatialFilter;
+
+using namespace std;
 
 class SpatialFilter {
 public:
@@ -22,6 +28,12 @@ public:
   static SpatialFilterPtr lessThanY(double y);
   static SpatialFilterPtr greaterThanX(double x);
   static SpatialFilterPtr greaterThanY(double y);
+  %extend {
+    bool matchesPoint(const vector<double> &point) {
+      vector<double> pointCopy = point;
+      return self->matchesPoint(pointCopy);
+    } 
+  }
 };
 
 //FunctionPtr operator*(double weight, FunctionPtr f);

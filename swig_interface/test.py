@@ -6,6 +6,10 @@ import MeshFactory
 import Mesh
 import BF
 import Function
+from SpatialFilter import *
+
+allSpace = SpatialFilter.allSpace()
+allSpace.matchesPoint([1.0,1.0])
 
 spaceDim = 2
 useConformingTraces  = True
