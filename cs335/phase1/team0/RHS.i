@@ -3,16 +3,14 @@
 #include "RHS.h"
  %}
 
-%include "std_strings.i"
+%include "std_string.i"
 
 %nodefaultctor RHS; // Disables the default constructor for class RHS
 
 class RHS {
  public:
-  RHS(bool legacySubclass); 
-  RHS(){ // specification said Python interface would not require the legacy bool and always pass false
-    return RHS(false);
-  }
+  //RHS(bool legacySubclass); 
+  static RHSPtr rhs();
 
   bool nonZeroRHS(int testVarID);
   
@@ -21,4 +19,12 @@ class RHS {
   
   LinearTermPtr linearTerm();
   LinearTermPtr linearTermCopy();
+
 };
+
+class RHSPtr {
+ public:
+  RHS* operator->();
+};
+
+
