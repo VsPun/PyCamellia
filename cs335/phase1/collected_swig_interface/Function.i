@@ -1,4 +1,4 @@
-%module Function
+%module (package = "PyCamellia") Function
 %{
 #include "Function.h"
 %}

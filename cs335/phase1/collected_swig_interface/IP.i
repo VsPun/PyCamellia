@@ -1,4 +1,4 @@
-%module IP
+%module (package = "PyCamellia") IP
 %{
 #include "IP.h"
 %}

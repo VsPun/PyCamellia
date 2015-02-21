@@ -1,4 +1,4 @@
-%module PoissonFormulation
+%module (package = "PyCamellia") PoissonFormulation
 %{
 #include "PoissonFormulation.h"
 %}

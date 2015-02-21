@@ -1,4 +1,4 @@
-%module VarFactory
+%module (package = "PyCamellia") VarFactory
 %{
 #include "VarFactory.h"
 %}

@@ -1,4 +1,4 @@
-%module RHS
+%module (package = "PyCamellia") RHS
 %{
 #include "RHS.h"
  %}

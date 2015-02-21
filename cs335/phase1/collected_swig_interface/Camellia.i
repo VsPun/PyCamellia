@@ -1,4 +1,4 @@
-%module Camellia
+%module (package = "PyCamellia") Camellia
 %{
 #include "BC.h"
 #include "IP.h"

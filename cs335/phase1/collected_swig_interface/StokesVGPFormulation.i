@@ -1,4 +1,4 @@
-%module StokesVGPFormulation
+%module (package = "PyCamellia") StokesVGPFormulation
 %{
 #include "StokesVGPFormulation.h"
 %}

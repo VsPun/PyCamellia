@@ -1,4 +1,4 @@
-%module SpatialFilter
+%module (package = "PyCamellia") SpatialFilter
 %{
 #include "SpatialFilter.h"
 %}

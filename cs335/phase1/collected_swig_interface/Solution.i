@@ -1,4 +1,4 @@
-%module Solution
+%module (package = "PyCamellia") Solution
 %{
 #include "Solution.h"
 %}

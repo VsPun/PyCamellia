@@ -1,4 +1,4 @@
-%module Var
+%module (package = "PyCamellia") Var
 %{
 #include "Var.h"
 #include "LinearTerm.h"

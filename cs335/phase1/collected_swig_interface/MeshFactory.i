@@ -1,4 +1,4 @@
-%module MeshFactory
+%module (package = "PyCamellia") MeshFactory
 %{
 #include "MeshFactory.h"
 %}

@@ -1,4 +1,4 @@
-%module LinearTerm
+%module (package = "PyCamellia") LinearTerm
 %{
 #include "LinearTerm.h"
 %}

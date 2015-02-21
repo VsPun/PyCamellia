@@ -1,4 +1,4 @@
-%module HDF5Exporter
+%module (package = "PyCamellia") HDF5Exporter
 %{
 #include "HDF5Exporter.h"
 %}
