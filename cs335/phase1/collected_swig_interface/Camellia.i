@@ -1,9 +1,12 @@
 %module (package = "PyCamellia") Camellia
 %{
 #include "BC.h"
+#include "Cell.h"
+#include "CellTopology.h"
 #include "IP.h"
 #include "Function.h"
 #include "LinearTerm.h"
+#include "MeshTopology.h"
 #include "SpatialFilter.h"
 #include "Solution.h"
 #include "Var.h"
@@ -16,7 +19,10 @@
 %include "std_set.i"
 %include "std_vector.i"
 
+typedef Teuchos::RCP<Cell> CellPtr;
+
 namespace std {
+  %template(CellVector) vector<CellPtr>;
   %template(DoubleVector) vector<double>;
   %template(DoubleVectorVector) vector< std::vector<double> >;
   %template(FunctionVector) vector<FunctionPtr>;
@@ -33,6 +39,10 @@ namespace std {
 #include "IndexType.h"
 
 typedef Teuchos::RCP<Solution> SolutionPtr;
+typedef Teuchos::RCP<MeshTopology> MeshTopologyPtr;
+typedef Teuchos::RCP<CellTopology> CellTopoPtr;
+
+typedef unsigned IndexType;
 typedef unsigned GlobalIndexType;
 
 using namespace std;
