@@ -19,3 +19,4 @@ from StokesVGPFormulation import *
 from Var import *
 from VarFactory import *
 
+camelliaMPISession = MPISession()

@@ -52,6 +52,13 @@ public:
   // ! Solves
   void solve();
   
+  // ! Returns the variable in the stream solution that represents the stream function.
+  VarPtr streamPhi();
+  
+  // ! Returns the stream solution (at current time).  (Stream solution is created during initializeSolution, but
+  // ! streamSolution->solve() must be called manually.)  Use streamPhi() to get a VarPtr for the streamfunction.
+  SolutionPtr streamSolution();
+  
   // ! Takes a time step
   void takeTimeStep();
   
