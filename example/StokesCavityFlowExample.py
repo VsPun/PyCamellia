@@ -14,16 +14,29 @@ form.initializeSolution(meshTopo,polyOrder,delta_k)
 form.addZeroMeanPressureCondition()
 
 topBoundary = SpatialFilter.matchingY(1.0)
-notTopBoundary = not topBoundary
+notTopBoundary = SpatialFilter.negatedFilter(topBoundary)
 
-one = Function.constant(1.0)
-zero = Function.constant(0.0)
-topVelocity = Function.vectorize(one,zero)
+x2 = Function.xn(2)
+zero = Function.constant(0)
+topVelocity = Function.vectorize(4*x2-1,zero)
 
 form.addWallCondition(notTopBoundary)
 form.addInflowCondition(topBoundary,topVelocity)
 
+refinementNumber = 0
 form.solve()
 
 energyError = form.solution().energyErrorTotal()
-print(energyError)
+print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyError))
+
+threshold = 0.2
+while energyError > threshold:
+  form.refine()
+  form.solve()
+  energyError = form.solution().energyErrorTotal()
+  refinementNumber += 1
+  print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyError))
+
+exporter = HDF5Exporter(form.solution().mesh(), "steadyStokes", ".")
+exporter.exportSolution(form.solution(),0)
+

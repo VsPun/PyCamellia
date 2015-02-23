@@ -50,3 +50,6 @@ s.projectOntoMesh({
     psi.ID() : Function.Function_vectorize(one,zero)
   })
 s.addSolution(s,1.0,[phi.ID()])
+
+solnPhi = Function.Function_solution(phi,s)
+
