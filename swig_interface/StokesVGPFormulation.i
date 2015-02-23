@@ -7,7 +7,7 @@
 
 class StokesVGPFormulation {
 public:
-  StokesVGPFormulation(int spaceDim, bool useConformingTraces, double mu = 1.0);
+  StokesVGPFormulation(int spaceDim, bool useConformingTraces, double mu = 1.0, bool transient = false, double dt = 1.0);
   
   // ! the Stokes VGP formulation bilinear form
   BFPtr bf();
