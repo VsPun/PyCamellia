@@ -1,12 +1,12 @@
-%module BF
+%module (package = "PyCamellia") BF
 %{
 #include "BF.h"
 %}
 
-%include "std_string.i"
+%include "Camellia.i"
+using namespace Camellia;
 
-%nodefaultctor BF;  // Disable the default constructor for class BF
-
+%nodefaultctor BF;
 class BF {
  public:
    void addTerm( LinearTermPtr trialTerm, LinearTermPtr testTerm );
@@ -36,8 +36,8 @@ class BF {
    }
  };
 
+
 class BFPtr {
 public:
   BF* operator->();
-
 };

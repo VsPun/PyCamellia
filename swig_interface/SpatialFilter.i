@@ -1,38 +1,37 @@
-%module SpatialFilter
+%module (package = "PyCamellia") SpatialFilter
 %{
 #include "SpatialFilter.h"
 %}
 
 %include "std_string.i"
-%include "std_vector.i"
+%include "Camellia.i"
 
-namespace std {
-  %template(DoubleVector) vector<double>;
-}
-
-%nodefaultctor SpatialFilter;
-
-using namespace std;
+%nodefaultctor SpatialFilter;  // Disable the default constructor for class SpatialFilter
 
 class SpatialFilter {
 public:
-  virtual bool matchesPoint(double x, double y);
+  virtual bool matchesPoint(double x, double y); //
   virtual bool matchesPoint(vector<double> &point); 
-  static SpatialFilterPtr allSpace();  
-  static SpatialFilterPtr unionFilter(SpatialFilterPtr a, SpatialFilterPtr b);
-  static SpatialFilterPtr intersectionFilter(SpatialFilterPtr a, SpatialFilterPtr b);
-  static SpatialFilterPtr negatedFilter(SpatialFilterPtr filterToNegate); 
-  static SpatialFilterPtr matchingX(double x);
-  static SpatialFilterPtr matchingY(double y);
+
+  // static methods:
+  static SpatialFilterPtr unionFilter(SpatialFilterPtr a, SpatialFilterPtr b); //
+  static SpatialFilterPtr intersectionFilter(SpatialFilterPtr a, SpatialFilterPtr b); //
+  static SpatialFilterPtr negatedFilter(SpatialFilterPtr filterToNegate);
+
+  static SpatialFilterPtr matchingX(double x); //
+  static SpatialFilterPtr matchingY(double y); //
   static SpatialFilterPtr lessThanX(double x);
   static SpatialFilterPtr lessThanY(double y);
   static SpatialFilterPtr greaterThanX(double x);
   static SpatialFilterPtr greaterThanY(double y);
+
+  static SpatialFilterPtr allSpace(); 
+
   %extend {
-    bool matchesPoint(const vector<double> &point) {
+    virtual bool matchesPoint(const vector<double> &point) {
       vector<double> pointCopy = point;
       return self->matchesPoint(pointCopy);
-    } 
+    }
   }
 };
 
@@ -49,5 +48,8 @@ public:
     SpatialFilterPtr __and__(SpatialFilterPtr b) {
       return SpatialFilter::intersectionFilter(*self,b);
     }
+    SpatialFilterPtr __invert__(){
+      return SpatialFilter::negatedFilter(*self);
+    }
   }
-};
+}; 

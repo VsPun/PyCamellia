@@ -1,9 +1,9 @@
-%module VarFactory
+%module (package = "PyCamellia") VarFactory
 %{
 #include "VarFactory.h"
 %}
 
-%include "std_string.i"
+%include "Camellia.i"
 
 class VarFactory {
 public:
@@ -32,11 +32,11 @@ public:
   std::vector< VarPtr > fluxVars();
   std::vector< VarPtr > traceVars();
 
-%extend {
+/*%extend {
   VarPtr testVar(std::string name, int fs, int ID = -1) {
     return self->testVar(name, (Space)fs, ID);
   }
-  VarPtr fieldVar(std::string name, int fs, int ID = -1) {
+  VarPtr fieldVar(std::string name, int fs = L2, int ID = -1) {
     return self->fieldVar(name,(Space)fs,ID);
   }
   VarPtr traceVar(std::string name, LinearTermPtr termTraced, int fs, int ID = -1) {
@@ -48,5 +48,5 @@ public:
   VarPtr traceVar(std::string name, int fs, int ID = -1) {
     return self->traceVar(name, (Space)fs, ID);
   } 
-}
+}*/
 };

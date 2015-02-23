@@ -1,24 +1,17 @@
-%module Mesh
+%module (package = "PyCamellia") Mesh
 %{
 #include "Mesh.h"
 %}
 
-%include "std_string.i"
-%include "std_vector.i"
-%include "std_set.i"
-
-namespace std {
-  %template(IntVector) vector<int>;
-  %template(UnsignedSet) set<unsigned>;
- }
-
-%nodefaultctor Mesh;  // Disable the default constructor for class Mesh
-
-typedef unsigned GlobalIndexType;
+%include "Camellia.i"
 
 using namespace std;
 
-class Mesh {
+//typedef Teuchos::RCP<Solution> SolutionPtr;
+//typedef unsigned GlobalIndexType;
+
+%nodefaultctor Mesh;
+class Mesh{
 public:
   void saveToHDF5(string filename);
   int cellPolyOrder(GlobalIndexType cellID);
@@ -30,13 +23,15 @@ public:
   GlobalIndexType numFieldDofs();
   GlobalIndexType numGlobalDofs();
   GlobalIndexType numElements();
-  void pRefine(const set<GlobalIndexType> &cellIDsForPRefinments);
-  void registerSolution(SolutionPtr solution);
+  void pRefine(const set<GlobalIndexType> &cellIDsForPRefinements);
   vector<unsigned> vertexIndicesForCell(GlobalIndexType cellID);
   vector< vector<double> > verticesForCell(GlobalIndexType cellID);
+  void registerSolution(SolutionPtr solution);
+  void unregisterSolution(SolutionPtr solution);
 };
 
 class MeshPtr {
 public:
   Mesh* operator->();
 };
+

@@ -1,27 +1,23 @@
-%module Solution
+%module (package = "PyCamellia") Solution
 %{
 #include "Solution.h"
 %}
 
-%include "std_set.i"
-%include "std_map.i"
-
-namespace std {
-  %template(SetInt) set<int>;
-  %template(MapIntToFunction) map<int,FunctionPtr>;
-}
+%include "Camellia.i"
 
 using namespace std;
 
+%nodefaultctor Solution;
+
 class Solution {
  public:
-  Solution(MeshPtr mesh, BCPtr bc = Teuchos::null,
-	   RHSPtr rhs = Teuchos::null, IPPtr ip = Teuchos::null );
+  static SolutionPtr solution(MeshPtr mesh, BCPtr bc = Teuchos::null,
+                              RHSPtr rhs = Teuchos::null, IPPtr ip = Teuchos::null);
   int solve();
   void addSolution(SolutionPtr soln, double weight,
-		 bool allowEmptyCells = false, bool replaceBoundaryTerms=false);
+                   bool allowEmptyCells = false, bool replaceBoundaryTerms=false);
   void addSolution(SolutionPtr soln, double weight,
-		   set<int> varsToAdd, bool allowEmptyCells = false);
+                   set<int> varsToAdd, bool allowEmptyCells = false);
   void clear();
   int cubatureEnrichmentDegree();
   void setCubatureEnrichmentDegree(int value);
@@ -43,11 +39,7 @@ class Solution {
   void saveToHDF5(std::string filename);
   void loadFromHDF5(std::string filename);
   void setUseCondensedSolve(bool value);
-  static SolutionPtr solution(MeshPtr mesh, BCPtr bc = Teuchos::null,
-                              RHSPtr rhs = Teuchos::null, IPPtr ip = Teuchos::null);
 };
-
-typedef Teuchos::RCP<Solution> SolutionPtr;
 
 class SolutionPtr {
 public:
