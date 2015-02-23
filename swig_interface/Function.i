@@ -37,6 +37,7 @@ public:
   
   static FunctionPtr composedFunction(FunctionPtr f, FunctionPtr g);
   static FunctionPtr constant(double value);
+  static FunctionPtr heaviside(double xShift);
   static FunctionPtr vectorize(FunctionPtr f1, FunctionPtr f2);
   static FunctionPtr normal();
   static FunctionPtr solution(VarPtr var, SolutionPtr soln);
