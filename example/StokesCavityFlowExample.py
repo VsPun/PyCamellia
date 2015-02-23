@@ -44,7 +44,7 @@ globalDofCount = mesh.numGlobalDofs()
 print("Initial mesh has %i elements and %i degrees of freedom." % (elementCount, globalDofCount))
 print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyError))
 
-threshold = 0.05
+threshold = .05
 while energyError > threshold and refinementNumber <= 8:
   form.refine()
   form.solve()
@@ -61,9 +61,22 @@ exporter.exportSolution(form.solution(),0)
 transient = True
 dt = 0.1
 totalTime = 2.0
-numTimeSteps = totalTime / dt
+numTimeSteps = int(totalTime / dt)
 transientForm = StokesVGPFormulation(spaceDim,useConformingTraces,mu,transient,dt)
 
-t = transientForm.getTimeFunction()
+timeRamp = TimeRamp.timeRamp(transientForm.getTimeFunction(),1.0)
 
+transientForm.initializeSolution(meshTopo,polyOrder,delta_k)
+
+transientForm.addZeroMeanPressureCondition()
+transientForm.addWallCondition(notTopBoundary)
+transientForm.addInflowCondition(topBoundary,timeRamp * topVelocity)
+
+transientExporter = HDF5Exporter(transientForm.solution().mesh(), "transientStokes", ".")
+
+for timeStepNumber in range(numTimeSteps):
+  transientForm.solve()
+  transientExporter.exportSolution(transientForm.solution(),transientForm.getTime())
+  transientForm.takeTimeStep()
+  print("Time step %i completed" % timeStepNumber)
 
