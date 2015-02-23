@@ -20,12 +20,7 @@ public:
 
   string displayString();
   
-%extend {
-  FunctionPtr evaluate(const map<int, FunctionPtr> &varFunctions) {
-    map<int, FunctionPtr> varFunctionsCopy = varFunctions; 
-    return self->evaluate(varFunctionsCopy); 
-  }
-}
+  FunctionPtr evaluate(const map<int, FunctionPtr> &varFunctions);
 
 };
 //FunctionPtr operator*(double weight, FunctionPtr f);                                                                                                                               
