@@ -16,6 +16,7 @@ from RHS import *
 from Solution import *
 from SpatialFilter import *
 from StokesVGPFormulation import *
+from TimeRamp import *
 from Var import *
 from VarFactory import *
 
