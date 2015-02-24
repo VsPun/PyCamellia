@@ -19,13 +19,9 @@ notTopBoundary = SpatialFilter.negatedFilter(topBoundary)
 
 x = Function.xn(1)
 rampWidth = 1./64
-deltaUp = Function.heaviside(rampWidth)
-deltaDown = Function.heaviside(1.0-rampWidth);
-ramp = (1-deltaDown) * deltaUp + (1./rampWidth) * (1-deltaUp) * x + (1./rampWidth) * deltaDown * (1-x)
-#print(ramp.evaluate(0.0,1.0))
-#print(ramp.evaluate(0.5,1.0))
-#print(ramp.evaluate(1.0/128.0,1.0))
-#print(ramp.evaluate(1-1.0/128.0,1.0))
+H_left = Function.heaviside(rampWidth)
+H_right = Function.heaviside(1.0-rampWidth);
+ramp = (1-H_right) * H_left + (1./rampWidth) * (1-H_left) * x + (1./rampWidth) * H_right * (1-x)
 
 zero = Function.constant(0)
 topVelocity = Function.vectorize(ramp,zero)
