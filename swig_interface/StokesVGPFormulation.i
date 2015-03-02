@@ -34,6 +34,12 @@ public:
   // ! refine according to energy error in the solution
   void refine();
   
+  // ! h-refine according to energy error in the solution
+  void hRefine();
+  
+  // ! p-refine according to energy error in the solution
+  void pRefine();
+  
   // ! Returns an RHSPtr corresponding to the vector forcing function f and the formulation.
   RHSPtr rhs(FunctionPtr f);
   
