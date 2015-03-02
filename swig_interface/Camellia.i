@@ -25,6 +25,7 @@ namespace std {
   %template(CellVector) vector<CellPtr>;
   %template(DoubleVector) vector<double>;
   %template(DoubleVectorVector) vector< std::vector<double> >;
+  %template(DoubleVectorDoubleVectorVectorPair) pair<std::vector<double>,std::vector<std::vector<double> > >;
   %template(FunctionVector) vector<FunctionPtr>;
   %template(IntFunctionMap) map<int, FunctionPtr>;
   %template(IntSet) set<int>;
