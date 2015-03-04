@@ -11,6 +11,7 @@ from Mesh import *
 from MeshFactory import *
 from MeshTopology import *
 from MPISession import *
+from NavierStokesVGPFormulation import *
 from PoissonFormulation import *
 from RHS import *
 from Solution import *
