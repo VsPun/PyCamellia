@@ -39,6 +39,19 @@ class Solution {
   void saveToHDF5(std::string filename);
   void loadFromHDF5(std::string filename);
   void setUseCondensedSolve(bool value);
+
+  %extend {
+    map<int,double> energyErrorPerCell() {
+      // might be better to just expose globalEnergyError();
+      // here, we're just renaming it something a bit clearer, and casting GlobalIndexType to int, basically
+      map<int,double> globalErrorInt;
+      map<GlobalIndexType,double> globalError = self->globalEnergyError();
+      for (map<GlobalIndexType,double>::iterator entryIt = globalError.begin(); entryIt != globalError.end(); entryIt++) {
+        globalErrorInt[entryIt->first] = entryIt->second; 
+      }
+      return globalErrorInt;
+    }
+  }
 };
 
 class SolutionPtr {
