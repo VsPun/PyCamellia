@@ -52,7 +52,7 @@ print("Initial mesh has %i elements and %i degrees of freedom." % (elementCount,
 print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyError))
 
 threshold = .01
-maxRefs = 3
+maxRefs = 1
 while energyError > threshold and refinementNumber <= maxRefs:
   form.hRefine()
   nonlinearSolve(maxSteps)
@@ -62,6 +62,15 @@ while energyError > threshold and refinementNumber <= maxRefs:
   globalDofCount = mesh.numGlobalDofs()
   print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyError))
   print("Mesh has %i elements and %i degrees of freedom." % (elementCount, globalDofCount))
+
+savePrefix = "navierStokesExample"
+print ("Saving to " + savePrefix)
+form.save(savePrefix)
+print ("...saved.")
+
+print ("Loading saved solution...")
+loadedForm = NavierStokesVGPFormulation(savePrefix,spaceDim,Re,polyOrder,delta_k)
+print ("Loaded.")
 
 exporter = HDF5Exporter(form.solution().mesh(), "steadyNavierStokes", ".")
 exporter.exportSolution(form.solution(),0)

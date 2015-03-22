@@ -10,7 +10,11 @@ public:
   NavierStokesVGPFormulation(MeshTopologyPtr meshTopology, double Re, int fieldPolyOrder, int delta_k = 1,
                              FunctionPtr forcingFunction = Teuchos::null, bool transientFormulation = false,
                              bool useConformingTraces = false);
-  
+
+  NavierStokesVGPFormulation(std::string prefixString, int spaceDim, double Re, int fieldPolyOrder, int delta_k = 1,
+                             FunctionPtr forcingFunction = Teuchos::null, bool transientFormulation = false,
+                             bool useConformingTraces = false);
+
   // ! the NavierStokes VGP formulation bilinear form
   BFPtr bf();
   
@@ -50,6 +54,9 @@ public:
   // ! Returns an RHSPtr corresponding to the vector forcing function f and the formulation.
   RHSPtr rhs(FunctionPtr f, bool excludeFluxesAndTraces);
   
+  // ! Saves the solution(s) and mesh to an HDF5 format.
+  void save(std::string prefixString);
+
   // ! set current time step used for transient solve
   void setTimeStep(double dt);
   

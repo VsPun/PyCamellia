@@ -30,7 +30,11 @@ public:
   // ! initialize the Solution object(s) using the provided MeshTopology
   void initializeSolution(MeshTopologyPtr meshTopo, int fieldPolyOrder, int delta_k = 1,
                           FunctionPtr forcingFunction = Teuchos::null);
-  
+
+  // ! initialize the Solution object(s) from the given saved file location
+  void initializeSolution(std::string savePrefix, int fieldPolyOrder, int delta_k = 1,
+                          FunctionPtr forcingFunction = Teuchos::null);
+
   // ! refine according to energy error in the solution
   void refine();
   
@@ -43,6 +47,9 @@ public:
   // ! Returns an RHSPtr corresponding to the vector forcing function f and the formulation.
   RHSPtr rhs(FunctionPtr f);
   
+  // ! Saves the solution(s) and mesh to an HDF5 format.
+  void save(std::string prefixString);
+
   // ! set the RefinementStrategy to use for driving refinements
   void setRefinementStrategy(RefinementStrategyPtr refStrategy);
   

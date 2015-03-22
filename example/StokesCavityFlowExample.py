@@ -41,7 +41,7 @@ print("Initial mesh has %i elements and %i degrees of freedom." % (elementCount,
 print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyError))
 
 threshold = .05
-while energyError > threshold and refinementNumber <= 8:
+while energyError > threshold and refinementNumber <= 1:
   form.hRefine()
   form.solve()
   energyError = form.solution().energyErrorTotal()
@@ -56,6 +56,16 @@ perCellError = form.solution().energyErrorPerCell()
 for cellID in perCellError:
   if perCellError[cellID] > .01:
     print("Energy error for cell %i: %0.3f" % (cellID, perCellError[cellID]))
+
+savePrefix = "stokesExample"
+print ("Saving to " + savePrefix)
+form.save(savePrefix)
+print ("...saved.")
+
+print ("Loading saved solution...")
+loadedForm = StokesVGPFormulation(spaceDim,useConformingTraces,mu)
+loadedForm.initializeSolution(savePrefix,polyOrder,delta_k)
+print ("Loaded.")
 
 exporter = HDF5Exporter(form.solution().mesh(), "steadyStokes", ".")
 exporter.exportSolution(form.solution(),0)
