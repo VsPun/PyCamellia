@@ -42,7 +42,7 @@ print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyErro
 
 threshold = .05
 while energyError > threshold and refinementNumber <= 8:
-  form.refine()
+  form.hRefine()
   form.solve()
   energyError = form.solution().energyErrorTotal()
   refinementNumber += 1
@@ -50,6 +50,12 @@ while energyError > threshold and refinementNumber <= 8:
   globalDofCount = mesh.numGlobalDofs()
   print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyError))
   print("Mesh has %i elements and %i degrees of freedom." % (elementCount, globalDofCount))
+
+# print out per-cell energy error for cells with energy error > 0.01:
+perCellError = form.solution().energyErrorPerCell()
+for cellID in perCellError:
+  if perCellError[cellID] > .01:
+    print("Energy error for cell %i: %0.3f" % (cellID, perCellError[cellID]))
 
 exporter = HDF5Exporter(form.solution().mesh(), "steadyStokes", ".")
 exporter.exportSolution(form.solution(),0)
