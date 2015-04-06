@@ -56,12 +56,6 @@ while energyError > threshold and refinementNumber <= 1:
   print("Energy error after %i refinements: %0.3f" % (refinementNumber, energyError))
   print("Mesh has %i elements and %i degrees of freedom." % (elementCount, globalDofCount))
 
-# print out per-cell energy error for cells with energy error > 0.01:
-perCellError = form.solution().energyErrorPerCell()
-for cellID in perCellError:
-  if perCellError[cellID] > .01:
-    print("Energy error for cell %i: %0.3f" % (cellID, perCellError[cellID]))
-
 u1_soln = Function.solution(form.u(1),form.solution())
 
 num_x = 10
@@ -73,10 +67,6 @@ for j in range(num_y):
   for i in range(num_x):
     x = -1 + 2. * float(i) / float(num_x - 1) # go from -1 to 1
     refCellVertexPoints.append([x,y])
-
-#print refCellVertexPoints
-
-#refCellVertexPoints = [[-1.,-1.],[1.,-1.],[-1.,1.],[1.,1.]];
 
 zList = [] # should have tuples (zVals, (x_min,x_max), (y_min,y_max)) -- one for each cell
 activeCellIDs = mesh.getActiveCellIDs()
