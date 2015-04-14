@@ -90,6 +90,9 @@ for cellID in activeCellIDs:
   yMin = min(yMinLocal,yMin)
   yMax = max(yMaxLocal,yMax)
 
+if abs(zMax - zMin) < 1e-3:
+  zMax = zMin + 1.0
+
 #plot them
 for zTuple in zList:
   zValues,(xMinLocal,xMaxLocal),(yMinLocal,yMaxLocal) = zTuple
