@@ -12,9 +12,9 @@ form = NavierStokesVGPFormulation(meshTopo,Re,polyOrder,delta_k)
 
 form.addZeroMeanPressureCondition()
 
-inflow = SpatialFilter.matchingX(0.0) and SpatialFilter.greaterThanY(1.0)
+inflow = SpatialFilter.matchingX(0.0) & SpatialFilter.greaterThanY(1.0)
 outflow = SpatialFilter.matchingX(8.0)
-wall = SpatialFilter.negatedFilter(inflow or outflow)
+wall = SpatialFilter.negatedFilter(inflow | outflow)
 
 y = Function.yn(1)
 inflowVelocity_x = -3*(y-1)*(y-2)
