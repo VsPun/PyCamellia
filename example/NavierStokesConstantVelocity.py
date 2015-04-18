@@ -17,8 +17,9 @@ form = NavierStokesVGPFormulation(meshTopo,Re,polyOrder,delta_k)
 form.addZeroMeanPressureCondition()
 
 inflow1 = SpatialFilter.matchingX(0.0)
-inflow2 = SpatialFilter.matchingX(8.0)
-outflow = SpatialFilter.matchingY(0.0) or SpatialFilter.matchingY(2.0)
+inflow2 = SpatialFilter.matchingY(2.0)
+inflow3 = SpatialFilter.matchingY(0.0)
+outflow = SpatialFilter.matchingX(8.0)
 
 y = Function.yn(1)
 inflowVelocity_x = Function.constant(1.0)
@@ -26,8 +27,7 @@ inflowVelocity_y = Function.constant(0.0)
 inflowVelocity = Function.vectorize(inflowVelocity_x,inflowVelocity_y)
 
 form.addOutflowCondition(outflow)
-form.addInflowCondition(inflow1,inflowVelocity)
-form.addInflowCondition(inflow2,inflowVelocity)
+form.addInflowCondition(inflow1 | inflow2 | inflow3,inflowVelocity)
 
 refinementNumber = 0
 
